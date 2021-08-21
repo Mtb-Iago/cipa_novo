@@ -2,6 +2,8 @@
 define("TITLE", "Projeto CIPA | Eleitor");
 @define("CSS", "../../assets/css/header.css");
 @define("JS", "../../assets/js/header.js");
+@define("MASCARA", "../../assets/js/mascara.js");
+@define("FAVICON", "../../assets/img/favicon.ico");
 require_once("../../config/conexao.php");
 require "../controllers/candidatosController.php";
 ?>
@@ -33,13 +35,13 @@ $dados = $allCandidatos;
 
     <main>
         <form method="POST" id="formCreate">
-            <h1>CADASTRO CIPA CANDIDATO</h1>
+            <h1>CADASTRO DE CANDIDATOS</h1>
             <div id="img">
                 <img src="../../assets/img/cipalogo.jpg" alt="" width="250px">
             </div>
             <input type="hidden" name="create" value="true">
             <input class="textInput" type="text" name="nome" placeholder="Nome">
-            <input class="textInput" type="text" name="cpf" placeholder="CPF">
+            <input class="textInput" type="text" name="cpf" id="cpf" placeholder="CPF">
             <input class="textInput" type="text" name="numero" placeholder="DIGITE SEU NÚMERO">
 
             <button type="submit" class="btn btn-success btn-lg" id="cadastrar">CADASTRAR</button>
@@ -48,6 +50,7 @@ $dados = $allCandidatos;
         </form>
 
         <div id="listarCandidato">
+            <h1 class="text-center">LISTA DE CANDIDATOS</h1>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -130,9 +133,12 @@ $dados = $allCandidatos;
                                 <button id="<?= $actionButton ?>" type="submit" class="btn btn-<?= $styleButton ?>"><?= $button ?></button>
                                 </form>
                             </div>
-                        <?php } else if ($_GET['delete']) { ?>
+                        <?php } else if ($_GET['delete']) { 
+                            $nomeCandidato = $res->findCandidate($_GET['delete']);?>
+                        <span>Deseja remover o candidato: <strong><?=$nomeCandidato['nome']?>?</strong></span>
                             <form id="<?= $form ?>" method="POST">
                                 <input type="hidden" name="id_excluir" value="<?= $_GET['delete'] ?>">
+                                <div id="message1"></div>
                                 <div class="modal-footer">
                                     <button type="button" id="fecharModal" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                                     <button id="<?= $actionButton ?>" type="submit" class="btn btn-<?= $styleButton ?>"><?= $button ?></button>
@@ -183,7 +189,7 @@ $dados = $allCandidatos;
                     setTimeout(() => {
                         window.location = "candidato.php";
 
-                    }, 3000);
+                    }, 2000);
                 },
             })
 
@@ -211,7 +217,7 @@ $dados = $allCandidatos;
                     setTimeout(() => {
                         $('#fecharModal').click()
                         window.location = "candidato.php";
-                    }, 3000);
+                    }, 2000);
                 },
             })
 
@@ -228,8 +234,8 @@ $dados = $allCandidatos;
                 dataType: "text",
                 success: function(message) {
                     <?php
-                    if (@$_GET['delete']) {
-                        $deleteCandidato = $res->excluirCandidatos($_GET['delete']);
+                    if (@$_POST['id_excluir']) {
+                        $deleteCandidato = $res->excluirCandidatos($_POST['id_excluir']);
                         echo $deleteCandidato; ?>
                     <?php }
                     ?>
@@ -239,7 +245,7 @@ $dados = $allCandidatos;
                     setTimeout(() => {
                         $('#fecharModal').click()
                         window.location = "candidato.php";
-                    }, 3000);
+                    }, 2000);
                 },
             })
 
