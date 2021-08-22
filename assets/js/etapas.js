@@ -1,18 +1,3 @@
-// const URL_TO_FETCH = 'index.php';
-// fetch(URL_TO_FETCH, {
-//   method: 'get' // opcional
-// })
-// .then(function(response) {
-//   response.text()
-//   .then(function(result) {
-//     console.log(result);
-//   })
-// })
-// .catch(function(err) { 
-//   console.error(err);
-// });
-
-
 let etapas = [
     {
         titulo: 'CANDIDATO',

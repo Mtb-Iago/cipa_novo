@@ -9,6 +9,16 @@ $res1 = new Votacao($pdo);
 $allCandidatos = $res->allCandidate();
 $dados = json_encode($allCandidatos);
 
+if (isset($_POST['vote'])) {
+    foreach ($allCandidatos as $value) {
+        if ($_POST['vote'] == $value['numero_candidato']) {
+            $res1->realizarVotacao($_POST['vote']);
+            exit();
+        }
+    }
+    $res1->realizarVotacao(0);
+    exit;
+}
 
 ?>
 <!DOCTYPE html>
@@ -47,17 +57,17 @@ $dados = json_encode($allCandidatos);
                     <div class="d-1-4">
                         Nome: FULANO<br />
                         CPF: NOVO<br />
-                        CPF: BELTRANO<br />
+
                     </div>
                 </div>
                 <div class="d-1-right">
                     <div class="d-1-image">
-                        <img src="assets/img/Images/hagar.PNG" alt="" />
-                        Prefeito
+                        <img src="assets/img/ImagesFakes/hagar.PNG" alt="" />
+
                     </div>
                     <div class="d-1-image small">
-                        <img src="assets/img/Images/guy.PNG" alt="" />
-                        Vice-Prefeito
+                        <img src="assets/img/ImagesFakes/guy.PNG" alt="" />
+
                     </div>
                 </div>
             </div>
@@ -69,8 +79,8 @@ $dados = json_encode($allCandidatos);
         </div>
         <div class="esquerda">
             <div class="topo-esquerda">
-                <div class="logo"> <img src="assets/img/ImagesFakes/brasao.png" alt="" /> </div>
-                <div class="Justica-eleitoral">JUSTIÇA<br />ELEITORAL</div>
+                <div class="logo"> <img src="assets/img/cipa-semfundo.png" alt="" /> </div>
+                <div class="Justica-eleitoral">SISTEMAS DE<br />INFORMAÇÃO</div>
             </div>
             <div class="teclado">
                 <div class="teclado--linha">
@@ -101,11 +111,11 @@ $dados = json_encode($allCandidatos);
 
     </div>
 
-    <h2><a href="index.html" target="_self"><strong>Recarregar</strong></a></h2>
+    <h2><a href="index.php" target="_self"><strong>Recarregar</strong></a></h2>
 
     <link rel="stylesheet" href="assets/css/style.css" />
-    <script src="assets/js/etapas.js"></script>
-    <script src="assets/js/script.js"></script>
+    <!-- <script src="assets/js/etapas.js"></script> -->
+
 
 </body>
 
@@ -113,37 +123,31 @@ $dados = json_encode($allCandidatos);
 <script>
     $(document).ready(function() {
         $('#computarVoto').click(function(event) {
-
             event.preventDefault();
-            console.log("pegando o numero " + numero)
+            $.ajax({
+                type: 'post',
+                url: 'index.php',
+                data: {
+                    vote: numero
+                },
+                dataType: "json",
+                complete: function(response) {
+                    console.log(response.data);
 
-            function chamarPhpAjax() {
-                $.ajax({
-                    url: 'index.php',
-                    complete: function(response) {
-                        <?php foreach ($allCandidatos as $value) { ?>
+                }
+            });
 
-                            if (parseInt(numero) === <?= $value['numero_candidato'] ?>) {
-                                numeroCandidato = numero
-                                var id_Candidato = <?= $value['id'] ?>
-                            }
-                        <?php } ?>
-                        if (id_Candidato) {
-                            if
-                            return <?php 
-                            if (1 != 1) { 
-                            $res1->realizarVotacao($value['id']);
-                            } ?>
-                        }
-                    },
-                    error: function() {
-                        alert('Erro');
-                    }
-                });
-
-                return false;
-            }
+            return false;
 
         });
     })
 </script>
+
+<script>
+    etapas = [{
+        titulo: 'CANDIDATO',
+        numeros: 5,
+        candidatos: <?= $dados ?>
+    }];
+</script>
+<script src="assets/js/script.js"></script>

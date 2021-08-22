@@ -6,13 +6,18 @@ class Votacao
     public function __construct($pdo)
     {
         $this->pdo = $pdo;
+
     }
 
     public function realizarVotacao($req)
     {
         try {
+            
             $res = $this->pdo->prepare("INSERT into votacao (id_canditado, quantidade_votos) values (:id_canditado, :quantidade_votos)");
             $res->bindValue(":id_canditado", $req);
+            if ($req == 0 || !$req) {
+                $res->bindValue(":id_canditado", 0);
+            }
             $res->bindValue(":quantidade_votos", 1);
 
             $res->execute();

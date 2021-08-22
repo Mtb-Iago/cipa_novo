@@ -17,12 +17,12 @@ function comecarEtapa() {
     numero = '';
     votoBranco = false;
 
-    for(let i=0;i<etapa.numeros;i++) {
-        if(i ===0) {
+    for (let i = 0; i < etapa.numeros; i++) {
+        if (i === 0) {
             numeroHTML += '<div class="numero pisca"></div>';
-        } else{
+        } else {
             numeroHTML += '<div class="numero"></div>';
-        }    
+        }
     }
 
     seuVotoPara.style.display = 'none';
@@ -32,34 +32,27 @@ function comecarEtapa() {
     lateral.innerHTML = '';
     numeros.innerHTML = numeroHTML;
 }
-function atualizaInterface(){
+function atualizaInterface() {
     let etapa = etapas[etapaAtual];
-    let candidato = etapa.candidatos.filter((item)=>{
-        if(item.numero === numero) {
+    let candidato = etapa.candidatos.filter((item) => {
+        if (item.numero_candidato === numero) {
             return true;
         } else {
             return false;
         }
     });
-    if(candidato.length > 0) {
+    if (candidato.length > 0) {
         candidato = candidato[0];
         seuVotoPara.style.display = 'block';
         aviso.style.display = 'block';
-        descricao.innerHTML = 'Nome: '+candidato.nome+'<br/>'+'CPF: '+candidato.partido; // AQUI RECEBO O CPF EM JSON
+        descricao.innerHTML = 'Nome: ' + candidato.nome + '<br/>' + 'CPF: ' + candidato.cpf; // AQUI RECEBO O CPF EM JSON
 
         let fotosHTML = '';
-        for(let i in candidato.fotos){
-            if(candidato.fotos[i].small) {
-                fotosHTML += '<div class="d-1-image small"> <img src="assets/img/ImagesFakes/'+candidato.fotos[i].url+'" alt="" />'+candidato.fotos[i].legenda+'</div>';
-            }else {
-                //fotosHTML += '<div class="d-1-image"> <img src="Images/${candidato.fotos[i].url}" alt="" />${candidato.fotos[i].legenda}</div>';
-                fotosHTML += '<div class="d-1-image"> <img src="assets/img/ImagesFakes/'+candidato.fotos[i].url+'" alt="" />'+candidato.fotos[i].legenda+'</div>';
-            }
- 
-        }
+        
+            fotosHTML += '<div class="d-1-image"> <img src="assets/img/cipalogo.jpg" alt="" />Candidato CIPA</div>';
 
         lateral.innerHTML = fotosHTML;
-    }else {
+    } else {
         seuVotoPara.style.display = 'block';
         aviso.style.display = 'block';
         descricao.innerHTML = '<div class="aviso--grande pisca">VOTO NULO</div>';
@@ -72,20 +65,20 @@ function clicou(n) {
     somNumeros.play();
 
     let elNumero = document.querySelector('.numero.pisca');
-    if(elNumero !== null) {
+    if (elNumero !== null) {
         elNumero.innerHTML = n;
         //numero = '${numero}${n}';
-        numero = numero+n;
+        numero = numero + n;
 
         //fazer com que o campo de número pisque e após preenchido passe para o proximo campo
         elNumero.classList.remove('pisca');
-        if( elNumero.nextElementSibling !== null){
+        if (elNumero.nextElementSibling !== null) {
             elNumero.nextElementSibling.classList.add('pisca');
         } else {
             atualizaInterface();
         }
     }
-} 
+}
 function branco() {
     numero === ''
     votoBranco = true;
@@ -96,7 +89,7 @@ function branco() {
     descricao.innerHTML = '<div class="aviso--grande pisca">VOTO EM BRANCO</div>';
     lateral.innerHTML = '';
 
-    
+
 }
 function corrige() {
     let somCorrige = new Audio();
@@ -110,7 +103,7 @@ function confirma() {
     let votoConfirmado = false;
     let somConfirma = new Audio("assets/audios/confirma.mp3");
 
-    if(votoBranco === true) {
+    if (votoBranco === true) {
         votoConfirmado = true;
         somConfirma.play();
 
@@ -118,7 +111,7 @@ function confirma() {
             etapa: etapas[etapaAtual].titulo,
             voto: 'branco'
         });
-    } else if(numero.length === etapa.numeros) {
+    } else if (numero.length === etapa.numeros) {
         votoConfirmado = true;
         somConfirma.play();
 
@@ -128,9 +121,9 @@ function confirma() {
         });
     }
 
-    if(votoConfirmado) {
+    if (votoConfirmado) {
         etapaAtual++;
-        if(etapas[etapaAtual] !== undefined) {
+        if (etapas[etapaAtual] !== undefined) {
             comecarEtapa();
         } else {
             document.querySelector('.tela').innerHTML = '<div class="aviso--gigante pisca">FIM</div>';
