@@ -4,6 +4,7 @@
 @define("PAGE_ELEITOR", "eleitor.php");
 @define("PAGE_CANDIDATO", "candidato.php");
 @define("PAGE_VOTACAO", "vote.php");
+@define("PAGE_APURACAO", "apurar.php");
 @define("CSS", "assets/css/header.css");
 @define("FAVICON", "assets/img/favicon.ico");
 @define("JS", "assets/js/header.js");
@@ -43,6 +44,9 @@
         </li>
         <li>
           <a href="<?=PAGE_VOTACAO?>">Votar</a>
+        </li>
+        <li>
+          <a href="<?=PAGE_APURACAO?>">Apuração</a>
         </li>
         <li>
           <a href="<?=PAGE_CANDIDATO?>">Candidato</a>

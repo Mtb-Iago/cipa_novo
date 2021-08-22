@@ -29,9 +29,11 @@ class Votacao
     }
     public function computarVotacao() 
     {
-        $res = $this->pdo->prepare("SELECT *, SUM(quantidade_votos) AS qtd_total FROM votacao GROUP BY id_candidato ORDER BY qtd_total DESC;");
+        $res = $this->pdo->prepare("SELECT *, SUM(quantidade_votos) AS qtd_total FROM votacao
+        INNER JOIN candidato ON votacao.id_candidato = candidato.numero_candidato
+        GROUP BY id_candidato ORDER BY qtd_total DESC;");
         $res->execute();
-        $dados = $res->fetch();
+        $dados = $res->fetchAll(PDO::FETCH_ASSOC);
         return $dados;
     }
     public function alterarVotacao($req)
