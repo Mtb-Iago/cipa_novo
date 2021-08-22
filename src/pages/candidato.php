@@ -11,7 +11,7 @@ require "../controllers/candidatosController.php";
 
 
 
-$res = new Canditados($pdo);
+$res = new Candidatos($pdo);
 $allCandidatos = $res->allCandidate();
 $dados = $allCandidatos;
 

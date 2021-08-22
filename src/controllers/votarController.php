@@ -13,10 +13,10 @@ class Votacao
     {
         try {
             
-            $res = $this->pdo->prepare("INSERT into votacao (id_canditado, quantidade_votos) values (:id_canditado, :quantidade_votos)");
-            $res->bindValue(":id_canditado", $req);
+            $res = $this->pdo->prepare("INSERT into votacao (id_candidato, quantidade_votos) values (:id_candidato, :quantidade_votos)");
+            $res->bindValue(":id_candidato", $req);
             if ($req == 0 || !$req) {
-                $res->bindValue(":id_canditado", 0);
+                $res->bindValue(":id_candidato", 0);
             }
             $res->bindValue(":quantidade_votos", 1);
 
@@ -27,10 +27,9 @@ class Votacao
             throw $th;
         }
     }
-    public function computarVotacao($req) 
+    public function computarVotacao() 
     {
-        $res = $this->pdo->prepare("SELECT * from votacao WHERE id = :id ");
-        $res->bindValue(":id", $req);
+        $res = $this->pdo->prepare("SELECT *, SUM(quantidade_votos) AS qtd_total FROM votacao GROUP BY id_candidato ORDER BY qtd_total DESC;");
         $res->execute();
         $dados = $res->fetch();
         return $dados;

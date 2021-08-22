@@ -1,7 +1,7 @@
 <?php
 
 
-class Canditados
+class Candidatos
 {
     public function __construct($pdo)
     {

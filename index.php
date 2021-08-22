@@ -3,7 +3,7 @@ require_once("./config/conexao.php");
 require "./src/controllers/candidatosController.php";
 require "./src/controllers/votarController.php";
 
-$res = new Canditados($pdo);
+$res = new Candidatos($pdo);
 $res1 = new Votacao($pdo);
 
 $allCandidatos = $res->allCandidate();
@@ -112,6 +112,7 @@ if (isset($_POST['vote'])) {
     </div>
 
     <h2><a href="index.php" target="_self"><strong>Recarregar</strong></a></h2>
+    <h2><a href="src/pages/candidato.php" target="_self"><strong>ADMIN</strong></a></h2>
 
     <link rel="stylesheet" href="assets/css/style.css" />
     <!-- <script src="assets/js/etapas.js"></script> -->

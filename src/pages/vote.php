@@ -10,7 +10,7 @@ define("TITLE", "Projeto CIPA | VOTAÇÃO");
 
 
 
-$candidato = new Canditados($pdo);
+$candidato = new Candidatos($pdo);
 $allCandidatos = $candidato->allCandidate();
 
 $dados = $allCandidatos;
