@@ -25,14 +25,7 @@
             <form action="config/autenticar.php" method="post">
                 <label for="cpf">CPF</label>
                 <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
-                <span id="question">Candidato ou Eleitor?</span>
-                <div class="form-group">
-                  
-                    <div class="selector width-per-item">
-                        <div name="radioButton" class="selection selected">Candidato</div>
-                        <div class="selection">Eleitor</div>
-                    </div>
-                </div>
+                
         </div>
         <button type="submit" class="btn">Acessar</button type="submit">
         </form>

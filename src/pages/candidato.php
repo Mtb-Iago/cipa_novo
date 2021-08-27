@@ -40,9 +40,9 @@ $dados = $allCandidatos;
                 <img src="../../assets/img/cipalogo.jpg" alt="" width="250px">
             </div>
             <input type="hidden" name="create" value="true">
-            <input class="textInput" type="text" name="nome" placeholder="Nome">
-            <input class="textInput" type="text" name="cpf" id="cpf" placeholder="CPF">
-            <input class="textInput" type="text" name="numero" placeholder="DIGITE SEU NÚMERO">
+            <input class="textInput" type="text" name="nome" placeholder="Nome" required>
+            <input class="textInput" type="text" name="cpf" id="cpf" placeholder="CPF" required>
+            <input class="textInput" type="text" name="numero" maxlength="5" required placeholder="DIGITE SEU NÚMERO">
 
             <button type="submit" class="btn btn-success btn-lg" id="cadastrar">CADASTRAR</button>
 
@@ -121,9 +121,9 @@ $dados = $allCandidatos;
                                         <h1>Editar</h1>
 
                                         <input type="hidden" name="id_editar" value="<?= $id ?>">
-                                        <input class="textInput" type="text" id="nome" name="nome" value="<?= $nome ?>">
-                                        <input class="textInput" type="text" id="cpf" name="cpf" value="<?= $cpf ?>">
-                                        <input class="textInput" type="text" id="numero" name="numero" value="<?= $numero_candidato ?>">
+                                        <input class="textInput" type="text" id="nome" name="nome" value="<?= $nome ?>" required>
+                                        <input class="textInput" type="text" id="cpfEdit" name="cpf" value="<?= $cpf ?>" required>
+                                        <input class="textInput" type="text" id="numero" name="numero" value="<?= $numero_candidato ?>" required >
 
                                         <div id="message1"></div>
 

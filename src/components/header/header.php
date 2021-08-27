@@ -1,9 +1,14 @@
 <?php
+@session_start();
+if (!$_SESSION['admin']) {
+  header('Location: ../../login.php');
+  exit;
+}
 @define("TITLE", "");
 @define("PAGE_HOME", "../../index.php");
+@define("PAGE_LOGOUT", "../../logout.php");
 @define("PAGE_ELEITOR", "eleitor.php");
 @define("PAGE_CANDIDATO", "candidato.php");
-@define("PAGE_VOTACAO", "vote.php");
 @define("PAGE_APURACAO", "apurar.php");
 @define("CSS", "assets/css/header.css");
 @define("FAVICON", "assets/img/favicon.ico");
@@ -40,12 +45,6 @@
       <div class="nav-mobile"><a id="navbar-toggle" href="#!"><span></span></a></div>
       <ul class="nav-list">
         <li>
-          <a href="<?=PAGE_HOME?>">Inicio</a>
-        </li>
-        <li>
-          <a href="<?=PAGE_VOTACAO?>">Votar</a>
-        </li>
-        <li>
           <a href="<?=PAGE_APURACAO?>">Apuração</a>
         </li>
         <li>
@@ -53,6 +52,9 @@
         </li>
         <li>
           <a href="<?=PAGE_ELEITOR?>">Eleitor</a>
+        </li>
+        <li>
+          <a href="<?=PAGE_LOGOUT?>">Sair</a>
         </li>
       </ul>
     </nav>

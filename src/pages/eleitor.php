@@ -103,7 +103,7 @@ $dados = $allEleitores;
 
                                     <input type="hidden" name="id_editar" value="<?= $id ?>">
                                     <input class="textInput" type="text" id="nome" name="editar_nome" value="<?= $nome ?>">
-                                    <input class="textInput" type="text" id="cpf" name="cpf" value="<?= $cpf ?>">
+                                    <input class="textInput" type="text" id="cpfEdit" name="cpf" value="<?= $cpf ?>">
 
                                     <div id="message1"></div>
 

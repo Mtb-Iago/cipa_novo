@@ -111,9 +111,6 @@ if (isset($_POST['vote'])) {
 
     </div>
 
-    <h2><a href="index.php" target="_self"><strong>Recarregar</strong></a></h2>
-    <h2><a href="src/pages/candidato.php" target="_self"><strong>ADMIN</strong></a></h2>
-
     <link rel="stylesheet" href="assets/css/style.css" />
     <!-- <script src="assets/js/etapas.js"></script> -->
 
