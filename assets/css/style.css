@@ -5,12 +5,14 @@
 }
 
 body{
+    background-color: #a3fbae6b;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     flex-direction: column;
+    min-height: 100vh;
 
 }
 .titulo {

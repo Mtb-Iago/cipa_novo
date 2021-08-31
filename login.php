@@ -22,15 +22,14 @@
     <div class="sign-up-card">
         <img src="assets/img/cipa-semfundo.png" width="200px" height="200px" alt="">
         <div class="input-div">
-            <form action="config/autenticar.php" method="post">
+            <form action="config/autenticar.php" method="POST">
                 <label for="cpf">CPF</label>
-                <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
-                
+                <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" />
+
         </div>
-        <button type="submit" class="btn">Acessar</button type="submit">
+        <button class="btn">Acessar</button>
         </form>
     </div>
 </body>
 
 </html>
-

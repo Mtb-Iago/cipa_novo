@@ -1,4 +1,9 @@
 <?php
+@session_start();
+if (!$_SESSION['eleitor'] && !$_SESSION['candidato'] &&  !$_SESSION['admin']) {
+    header('Location: login.php');
+    exit;
+}
 require_once("./config/conexao.php");
 require "./src/controllers/candidatosController.php";
 require "./src/controllers/votarController.php";
@@ -37,9 +42,7 @@ if (isset($_POST['vote'])) {
 </head>
 
 <body>
-    <div class="titulo">
-        <h1>Urna Eletrônica</h1>
-    </div>
+    
     <div class="urna">
         <div class="tela">
             <div class="d-1">
@@ -62,11 +65,9 @@ if (isset($_POST['vote'])) {
                 </div>
                 <div class="d-1-right">
                     <div class="d-1-image">
-                        <img src="assets/img/ImagesFakes/hagar.PNG" alt="" />
-
+                        
                     </div>
                     <div class="d-1-image small">
-                        <img src="assets/img/ImagesFakes/guy.PNG" alt="" />
 
                     </div>
                 </div>

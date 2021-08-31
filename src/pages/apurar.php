@@ -26,16 +26,20 @@ $dados = $allCandidatos;
         </tr>
     </thead>
     <tbody>
+
         <?php foreach ($dados as $key => $value) { ?>
             <tr>
-                <th scope="row"><strong><?=$key + 1?>º</strong></th>
-                <td><?=$value['nome']?></td>
-                <td><?=$value['cpf']?></td>
-                <td><?=$value['id_candidato']?></td>
-                <td id="total"><?=$value['qtd_total']?></td>
+                <th scope="row"><strong><?= $key + 1 ?>º</strong></th>
+                <td><?= $value['nome'] ?></td>
+                <td><?= $value['cpf'] ?></td>
+                <td><?= $value['id_candidato'] ?></td>
+                <td id="total"><?= $value['qtd_total'] ?></td>
             </tr>
-        <?php } ?>
+            <?php }
+        if (!$dados) { ?>
+            <td>Ainda não temos votos computados</td>
 
+        <?php } ?>
 
     </tbody>
 </table>
@@ -49,10 +53,12 @@ $dados = $allCandidatos;
         width: 90% !important;
         margin: auto;
     }
-    body > .table > tbody > tr {
-        
+
+    body>.table>tbody>tr {
+
         font-weight: bolder;
     }
+
     #total {
         background: cadetblue;
     }

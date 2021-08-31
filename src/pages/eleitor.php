@@ -161,7 +161,7 @@ $dados = $allEleitores;
                     ?>
                     $('#message').addClass("text-success text-center")
                     $('#message').css("display", "block")
-                    $('#message').text('Cadastrado com sucesso!')
+                    $('#message').text('Processando...')
                     setTimeout(() => {
                         window.location = "eleitor.php";
 

@@ -10,21 +10,38 @@ class Eleitor
 
     public function cadastrarEleitor($req)
     {
+        if (empty($req['nome']) || empty($req['cpf'])) {
+            return "Preencha todos os campos";
+        }
         try {
+            $res = $this->pdo->prepare("SELECT * from eleitor WHERE cpf = :cpf ");
+            $res->bindValue(":cpf", $req['cpf']);
+            $res->execute();
+            $dados = $res->fetch();
+
+            if ($dados) {
+                echo( "Usuário já cadastro");
+                exit;
+            }
+
             $res = $this->pdo->prepare("INSERT into eleitor (nome, cpf) values (:nome, :cpf)");
             $res->bindValue(":nome", $req['nome']);
             $res->bindValue(":cpf", $req['cpf']);
 
-            $res->execute();
+            if($res->execute()) {
+                echo ("Cadastrado com Sucesso!!");
+                exit;
+            }
+            echo ("Cadastro não efetuado");
+            exit;
 
-            echo "Cadastrado com Sucesso!!";
         } catch (\Throwable $th) {
             throw $th;
         }
     }
     public function pesquisarEleitores()
     {
-        $res = $this->pdo->query("SELECT * from eleitor");
+        $res = $this->pdo->query("SELECT * from eleitor ORDER BY cpf DESC");
         $dados = $res->fetchAll(PDO::FETCH_ASSOC);
         return $dados;
     }
@@ -56,5 +73,5 @@ class Eleitor
         $dados = $res->fetch();
        echo "Deletado com sucesso!";
     }
-
+    
 }

@@ -14,6 +14,19 @@ class Candidatos
             return "Preencha todos os campos";
         }
         try {
+
+            $res = $this->pdo->prepare("SELECT * from candidato WHERE cpf = :cpf or numero_candidato = :numero ");
+            $res->bindValue(":cpf", $req['cpf']);
+            $res->bindValue(":numero", $req['numero']);
+            $res->execute();
+            $dados = $res->fetch();
+
+            if ($dados) {
+                echo( "Candidato já cadastrado");
+                exit;
+            }
+
+
             $res = $this->pdo->prepare("INSERT into candidato (nome, numero_candidato, cpf) values (:nome, :numero, :cpf)");
             $res->bindValue(":nome", $req['nome']);
             $res->bindValue(":cpf", $req['cpf']);
@@ -28,7 +41,7 @@ class Candidatos
     }
     public function allCandidate()
     {
-        $res = $this->pdo->query("SELECT * from candidato");
+        $res = $this->pdo->query("SELECT * from candidato WHERE numero_candidato != 0 ORDER BY cpf DESC ");
         $dados = $res->fetchAll(PDO::FETCH_ASSOC);
         return $dados;
     }

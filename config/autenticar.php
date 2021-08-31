@@ -33,14 +33,15 @@ if (isset($_POST['cpf'])) {
             if ($dados) {
                 if (count($dados) > 0) {
                     $_SESSION['admin'] = $dados['cpf'];
-                    header('Location: ../src/pages/eleitor.php');
+                    header('Location: ../src/pages/apurar.php');
                     exit;
                 }
             }
             echo ("<script>alert('Usuário não encontrado')</script>");
+            echo "<script language='javascript'>window.location='../login.php'; </script>";
         } else {
             echo ("<script>alert('Usuário não encontrado')</script>");
-            header('Location: ../login.php');
+            echo "<script language='javascript'>window.location='../login.php'; </script>";
         }
     }
 }

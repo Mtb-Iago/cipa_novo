@@ -123,7 +123,7 @@ $dados = $allCandidatos;
                                         <input type="hidden" name="id_editar" value="<?= $id ?>">
                                         <input class="textInput" type="text" id="nome" name="nome" value="<?= $nome ?>" required>
                                         <input class="textInput" type="text" id="cpfEdit" name="cpf" value="<?= $cpf ?>" required>
-                                        <input class="textInput" type="text" id="numero" name="numero" value="<?= $numero_candidato ?>" required >
+                                        <input class="textInput" type="text" id="numero" maxlength="5" name="numero" value="<?= $numero_candidato ?>" required >
 
                                         <div id="message1"></div>
 
@@ -185,7 +185,7 @@ $dados = $allCandidatos;
                     ?>
                     $('#message').addClass("text-success text-center")
                     $('#message').css("display", "block")
-                    $('#message').text('Cadastrado com sucesso!')
+                    $('#message').text('Processando...')
                     setTimeout(() => {
                         window.location = "candidato.php";
 
