@@ -15,7 +15,7 @@ if (isset($_POST['cpf'])) {
         }
     } else if (!$dados) {
 
-        $res = $pdo->prepare("SELECT * from candidato WHERE cpf = :id ");
+        $res = $pdo->prepare("SELECT * from candidato WHERE cpf = :id AND cpf != '000.000.000-00' ");
         $res->bindValue(":id", $_POST['cpf']);
         $res->execute();
         $dados1 = @$res->fetch();

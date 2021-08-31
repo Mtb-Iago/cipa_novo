@@ -39,7 +39,7 @@ if (!$_SESSION['admin']) {
 <section class="navigation">
   <div class="nav-container">
     <div class="brand">
-      <a href="#!">CIPA</a>
+      <a href="apurar.php">CIPA</a>
     </div>
     <nav>
       <div class="nav-mobile"><a id="navbar-toggle" href="#!"><span></span></a></div>

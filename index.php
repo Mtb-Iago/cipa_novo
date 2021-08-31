@@ -1,6 +1,6 @@
 <?php
 @session_start();
-if (!$_SESSION['eleitor'] && !$_SESSION['candidato'] &&  !$_SESSION['admin']) {
+if (!@$_SESSION['eleitor'] && !@$_SESSION['candidato'] &&  !@$_SESSION['admin']) {
     header('Location: login.php');
     exit;
 }
