@@ -56,6 +56,7 @@ $dados = $allEleitores;
                 </tbody>
             </table>
         </div>
+        <?php include '../components/footer/footer.php' ?>
     </main>
 
 

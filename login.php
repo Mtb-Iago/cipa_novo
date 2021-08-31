@@ -30,6 +30,7 @@
         <button class="btn">Acessar</button>
         </form>
     </div>
+    <?php include 'src/components/footer/footer.php' ?>
 </body>
 
 </html>

@@ -35,7 +35,7 @@ $dados = $allCandidatos;
                 <td><?= $value['id_candidato'] ?></td>
                 <td id="total"><?= $value['qtd_total'] ?></td>
             </tr>
-            <?php }
+        <?php }
         if (!$dados) { ?>
             <td>Ainda não temos votos computados</td>
 
@@ -43,7 +43,7 @@ $dados = $allCandidatos;
 
     </tbody>
 </table>
-
+<?php include '../components/footer/footer.php' ?>
 </body>
 
 </html>

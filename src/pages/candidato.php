@@ -154,8 +154,8 @@ $dados = $allCandidatos;
         <?php } ?>
 
 
+        <?php include '../components/footer/footer.php' ?>
     </main>
-
 </body>
 
 </html>
